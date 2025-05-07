@@ -1,0 +1,2 @@
+# Gaussian-Mixture-Models-using-Expectation-Maximization
+This repository contains an implementation of the Expectation-Maximization algorithm for fitting a Gaussian Mixture Model to a set of data points. The model is designed to estimate the parameters of multiple Gaussian distributions that best fit the data. The EM algorithm optimizes the parameters and KL helps measure the accuracy of the same.
