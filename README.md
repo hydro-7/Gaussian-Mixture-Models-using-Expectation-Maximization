@@ -4,7 +4,11 @@
 This is an implementation of the Expectation Maximization algorithm which helps fitting a Gaussian Model to a set of data points. The algorithm is designed to estimate parameters of multiple Gaussian distributions that best fit the data. The algorithm is responsible for finding the best estimates for the parameters. At the same time, once the fitting is completed, the KL Divergence algorithm is a method that helps measure the error between the predicted fit and the actual curve. 
 
 ## **Proof of Correctness**
-We wish to find a $\theta$ (Parameter Vector) such that $P(X|\theta)$ is maximized, i.e, Maximum Likelihood. Alternatively to simplify the calculation, we can maximize $$ \mathcal{L}(\theta) = \ln P(X \mid \theta) $$ This is known as the log maximum likelihood measure.
+We wish to find a $\theta$ (Parameter Vector) such that $P(X|\theta)$ is maximized, i.e, Maximum Likelihood. Alternatively to simplify the calculation, we can maximize 
+
+$$ \mathcal{L}(\theta) = \ln P(X \mid \theta) $$ 
+
+This is known as the log maximum likelihood measure.
 
 Now, as $\ln(x)$ is an increasing function, the value of $\theta$ that maximizes $P(X|\theta)$ will also maximize $\mathcal{L}(\theta)$.
 Assume that after the $n^{th}$ iteration, the estimate is $\theta_n$ and this is updated to become $theta$ after the algorithm.
@@ -67,10 +71,11 @@ So, any $\theta$ which increases $\mathcal{l}(\theta \mid \theta_n)$ would lead 
 
 $\therefore$ To maximize $\mathcal{L}(\theta)$, we can maximize $\mathcal{l}(\theta \mid \theta_n)$. This is more helpful as $\mathcal{l}(\theta \mid \theta_n)$ .
 
-Finally, 
-$$\theta_{n + 1} = \argmax_{\theta} [ \mathcal{l}(\theta \mid \theta_n) ]$$
+Finally,
 
-$$\implies \theta_{n + 1} = \argmax_{\theta} [\mathcal{L}(\theta_n) + \Delta(\theta \mid \theta_n)]$$
+$$\theta_{n + 1} = argmax_{\theta} [ \mathcal{l}(\theta \mid \theta_n) ]$$
+
+$$\implies \theta_{n + 1} = argmax_{\theta} [\mathcal{L}(\theta_n) + \Delta(\theta \mid \theta_n)]$$
 
 Now, expand the terms inside the argmax and drop the non - $\theta$ terms.
 
