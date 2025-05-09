@@ -50,7 +50,7 @@ But, the problem that comes up due to the presence of the summation over $k$ tha
 
 ----
 
-Before anything else, the probability density function of a **Multivariate Normal Function** [ $\mathcal{N}(X \mid \theta) $ ] is:
+Before anything else, the probability density function of a **Multivariate Normal Function** [ $\mathcal{N}(X \mid \theta)$ ] is:
 
 $$
 \mathcal{N}(X_n \mid \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} \exp\left( -\frac{1}{2} (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) \right)
@@ -62,6 +62,7 @@ Where:
 - $\Sigma_k \in \mathbb{R}^{d \times d}$ is the covariance matrix (positive definite).
 
 Let:
+
 $$ 
 Z = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) 
 $$
@@ -75,6 +76,7 @@ C = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}}
 $$
 
 Then:
+
 $$
 Z = C \cdot \exp\left(-\frac{1}{2} Q\right)
 $$
