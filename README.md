@@ -54,7 +54,7 @@ $$
 $$
 
 Where:
-- $ X_n \in \mathbb{R}^d $ is a data point,
+- $X_n \in \mathbb{R}^d$ is a data point,
 - $ \mu_k \in \mathbb{R}^d $ is the mean of component $ k $,
 - $ \Sigma_k \in \mathbb{R}^{d \times d} $ is the covariance matrix (positive definite).
 
