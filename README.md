@@ -78,13 +78,13 @@ $$
 Now, expand the terms inside the argmax and drop the non - $\theta$ terms.
 
 $$
-\theta_{n + 1} = \argmax_{\theta} [\sum_Z P(Z \mid X, \theta_n) \ln P(X \mid Z, \theta) \cdot P(Z \mid \theta)]
+\theta_{n + 1} = argmax_{\theta} [\sum_Z P(Z \mid X, \theta_n) \ln P(X \mid Z, \theta) \cdot P(Z \mid \theta)]
 $$
 
 Now simplify $P(X \mid Z, \theta) \cdot P(Z \mid \theta)$ to $P(X, Z \mid \theta)$ as we know, E = $\sum$ P . So, 
 
 $$
-\theta_{n + 1} = \argmax_{\theta} [E_{Z \mid X, \theta_n} (\ln P(X, Z \mid \theta))]
+\theta_{n + 1} = argmax_{\theta} [E_{Z \mid X, \theta_n} (\ln P(X, Z \mid \theta))]
 $$
 
 Hence, this shows that the Expectation step leads to the maximization of $\mathcal{L}(\theta)$ on the $n + 1^{th}$ iteration. That is, on eac hiteration the likelihood is non - decreasing.
