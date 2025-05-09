@@ -44,6 +44,123 @@ $$ \log \mathcal{L}(\theta) = \sum_{n = 1}^N \log \sum_{k = 1}^K \pi_k \cdot \ma
 
 Here, the problem that comes up due to the presence of the summation over $k$ that is present within the logarithm. This prevents the log function acting directly over the Gaussian. So, if we set the derivatives as $0$ we will no longer obtain a closed form solution, which is undesirable.
 
+Let us look at the conditions that must be satisfied at the max of the likelihood function, i.e, computing $\frac{\partial\mathcal{L}(\theta)}{\partial\mu_k}$ :
+
+
+Before anything else, the probability density function of a multivariate normal function [ $\mathcal{N}(X \mid \theta) $ ] is:
+
+$$
+\mathcal{N}(X_n \mid \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} \exp\left( -\frac{1}{2} (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) \right)
+$$
+
+Where:
+- $ X_n \in \mathbb{R}^d $ is a data point,
+- $ \mu_k \in \mathbb{R}^d $ is the mean of component $ k $,
+- $ \Sigma_k \in \mathbb{R}^{d \times d} $ is the covariance matrix (positive definite).
+
+Let:
+$$ Z = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) $$
+$$ Q = (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) $$
+$$ C = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} $$
+
+Then:
+$$
+Z = C \cdot \exp\left(-\frac{1}{2} Q\right)
+$$
+
+
+$$
+\frac{\partial Z}{\partial \mu_k} 
+= \frac{\partial}{\partial \mu_k} \left( C \cdot \exp\left( -\frac{1}{2} Q \right) \right)
+= Z \cdot \left( -\frac{1}{2} \cdot \frac{\partial Q}{\partial \mu_k} \right)
+$$
+
+
+
+Let $ a = X_n - \mu_k $, then:
+
+$$
+Q = a^T \Sigma_k^{-1} a
+$$
+
+So, 
+
+$$
+\frac{\partial Q}{\partial \mu_k} 
+= \frac{\partial}{\partial \mu_k} \left( (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) \right)
+= -2 \Sigma_k^{-1} (X_n - \mu_k)
+$$
+
+Finally, 
+
+Substitute back into the expression for $ \frac{\partial Z}{\partial \mu_k} $
+
+$$
+\frac{\partial}{\partial \mu_k} \mathcal{N}(X_n \mid \mu_k, \Sigma_k)
+= Z \cdot \left( -\frac{1}{2} \cdot (-2 \Sigma_k^{-1} (X_n - \mu_k)) \right)
+= \mathcal{N}(X_n \mid \mu_k, \Sigma_k) \cdot \Sigma_k^{-1} (X_n - \mu_k)
+$$
+
+Hence, 
+
+$$
+\boxed{
+\frac{\partial}{\partial \mu_k} \mathcal{N}(X_n \mid \mu_k, \Sigma_k) = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) \cdot \Sigma_k^{-1} (X_n - \mu_k)
+}
+$$
+
+
+Using this result, we can now solve for our required result :
+
+
+$$
+\log L(\theta) = \sum_{n=1}^N \log \left( \sum_{k=1}^K \pi_k \cdot \mathcal{N}(X_n \mid \mu_k, \Sigma_k) \right)
+$$
+
+Let:
+
+$$
+\gamma_{nk} = \frac{\pi_k \mathcal{N}(X_n \mid \mu_k, \Sigma_k)}{\sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j)}
+$$
+
+This is the **responsibility** of component $ k $ for data point $ X_n $.
+
+$$
+\frac{\partial \log L(\theta)}{\partial \mu_k} = \sum_{n=1}^N \frac{\partial}{\partial \mu_k} \log \left( \sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j) \right)
+$$
+
+Since only the $ k $-th term depends on $\mu_k $, apply the chain rule:
+
+$$
+= \sum_{n=1}^N \frac{1}{\sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j)} \cdot \pi_k \frac{\partial \mathcal{N}(X_n \mid \mu_k, \Sigma_k)}{\partial \mu_k}
+$$
+
+From above :
+
+$$
+\frac{\partial}{\partial \mu_k} \mathcal{N}(X_n \mid \mu_k, \Sigma_k) = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) \cdot \Sigma_k^{-1} (X_n - \mu_k)
+$$
+
+Substitute this into the previous expression:
+
+$$
+\frac{\partial \log L(\theta)}{\partial \mu_k} 
+= \sum_{n=1}^N \frac{\pi_k \mathcal{N}(X_n \mid \mu_k, \Sigma_k)}{\sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j)} \cdot \Sigma_k^{-1} (X_n - \mu_k)
+$$
+
+Hence, 
+
+$$
+\boxed{
+\frac{\partial \log L(\theta)}{\partial \mu_k} 
+= \sum_{n=1}^N \gamma_{nk} \Sigma_k^{-1} (X_n - \mu_k)
+}
+$$
+
+**NOTE:** This is the gradient used in the **M-step** of the EM algorithm for updating $ \mu_k $.
+
+
+
 
 ## **Proof of Correctness**
 We wish to find a $\theta$ (Parameter Vector) such that $P(X|\theta)$ is maximized, i.e, Maximum Likelihood. Alternatively to simplify the calculation, we can maximize 
