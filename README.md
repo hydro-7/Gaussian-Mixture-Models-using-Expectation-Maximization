@@ -1,7 +1,19 @@
 # **Gaussian Mixture Models, Expectation Maximization and KL Divergence**
 
 ## **Introduction**
-This is an implementation of the Expectation Maximization algorithm which helps fitting a Gaussian Model to a set of data points. The algorithm is designed to estimate parameters of multiple Gaussian distributions that best fit the data. The algorithm is responsible for finding the best estimates for the parameters. At the same time, once the fitting is completed, the KL Divergence algorithm is a method that helps measure the error between the predicted fit and the actual curve. 
+This is an implementation of the Expectation Maximization algorithm which helps fitting a Gaussian Model to a set of data points. The algorithm is designed to estimate parameters of multiple Gaussian distributions that best fit the data. It is responsible for finding the best estimates for the parameters. At the same time, once the fitting is completed, the KL Divergence algorithm is a method that helps measure the error between the predicted fit and the actual curve. 
+
+## **Table of Contents**
+- [Introduction](https://github.com/hydro-7/Gaussian-Mixture-Models-using-Expectation-Maximization?tab=readme-ov-file#introduction)
+- [Machine Learning]()
+   - [What is all this ?]()
+   - [How it Works]()
+   - [Results]()
+   - [Dependencies]()
+- [Mathematics]()
+   - [Why Expectation Maximization and Its comparision with K - Means]()
+   - [Basic Calculations]()
+   - [Deriving Maximization Step equations]()
 
 ## **Why Expectation Maximization**
 Let us start of with some basic calculation which will come in handy later :
