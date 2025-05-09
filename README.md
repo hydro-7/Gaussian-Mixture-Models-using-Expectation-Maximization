@@ -55,13 +55,21 @@ $$
 
 Where:
 - $X_n \in \mathbb{R}^d$ is a data point,
-- $ \mu_k \in \mathbb{R}^d $ is the mean of component $ k $,
-- $ \Sigma_k \in \mathbb{R}^{d \times d} $ is the covariance matrix (positive definite).
+- $\mu_k \in \mathbb{R}^d$ is the mean of component $ k $,
+- $\Sigma_k \in \mathbb{R}^{d \times d}$ is the covariance matrix (positive definite).
 
 Let:
-$$ Z = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) $$
-$$ Q = (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) $$
-$$ C = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} $$
+$$ 
+Z = \mathcal{N}(X_n \mid \mu_k, \Sigma_k) 
+$$
+
+$$ 
+Q = (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) 
+$$
+
+$$ 
+C = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} 
+$$
 
 Then:
 $$
@@ -77,7 +85,7 @@ $$
 
 
 
-Let $ a = X_n - \mu_k $, then:
+Let $a = X_n - \mu_k$, then:
 
 $$
 Q = a^T \Sigma_k^{-1} a
@@ -93,7 +101,7 @@ $$
 
 Finally, 
 
-Substitute back into the expression for $ \frac{\partial Z}{\partial \mu_k} $
+Substitute back into the expression for $\frac{\partial Z}{\partial \mu_k}$
 
 $$
 \frac{\partial}{\partial \mu_k} \mathcal{N}(X_n \mid \mu_k, \Sigma_k)
@@ -123,13 +131,13 @@ $$
 \gamma_{nk} = \frac{\pi_k \mathcal{N}(X_n \mid \mu_k, \Sigma_k)}{\sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j)}
 $$
 
-This is the **responsibility** of component $ k $ for data point $ X_n $.
+This is the **responsibility** of component $k$ for data point $X_n$.
 
 $$
 \frac{\partial \log L(\theta)}{\partial \mu_k} = \sum_{n=1}^N \frac{\partial}{\partial \mu_k} \log \left( \sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j) \right)
 $$
 
-Since only the $ k $-th term depends on $\mu_k $, apply the chain rule:
+Since only the $k$-th term depends on $\mu_k$, apply the chain rule:
 
 $$
 = \sum_{n=1}^N \frac{1}{\sum_{j=1}^K \pi_j \mathcal{N}(X_n \mid \mu_j, \Sigma_j)} \cdot \pi_k \frac{\partial \mathcal{N}(X_n \mid \mu_k, \Sigma_k)}{\partial \mu_k}
