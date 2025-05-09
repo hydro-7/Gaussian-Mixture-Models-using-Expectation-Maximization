@@ -31,7 +31,7 @@ $$
 \mathcal{L}(\theta) - \mathcal{L}(\theta_n) = \ln \sum_Z P(Z \mid X, \theta_n) \cdot \frac{P(X \mid Z, \theta) \cdot P(Z \mid \theta)}{P(Z \mid X, \theta_n)} - \ln P(X \mid \theta_n)  
 $$
 
-Now, applying Jensen's Inequality on the above equation, we get :\
+Now, applying Jensen's Inequality on the above equation, we get :
 
 $$\ln \sum_Z P(Z \mid X, \theta_n) \cdot \frac{P(X \mid Z, \theta) \cdot P(Z \mid \theta)}{P(Z \mid X, \theta_n)} - \ln P(X \mid \theta_n) \geq \sum_Z P(Z \mid X, \theta_n) \ln \frac{P(X \mid Z, \theta) \cdot P(Z \mid \theta)}{P(Z \mid X, \theta_n)} - \ln P(X \mid \theta_n)$$
 
@@ -68,12 +68,10 @@ So, any $\theta$ which increases $\mathcal{l}(\theta \mid \theta_n)$ would lead 
 $\therefore$ To maximize $\mathcal{L}(\theta)$, we can maximize $\mathcal{l}(\theta \mid \theta_n)$. This is more helpful as $\mathcal{l}(\theta \mid \theta_n)$ .
 
 Finally, 
-$$
-\theta_{n + 1} = \argmax_{\theta} [ \mathcal{l}(\theta \mid \theta_n) ]
-$$
-$$
-\implies \theta_{n + 1} = \argmax_{\theta} [\mathcal{L}(\theta_n) + \Delta(\theta \mid \theta_n)]
-$$
+$$\theta_{n + 1} = \argmax_{\theta} [ \mathcal{l}(\theta \mid \theta_n) ]$$
+
+$$\implies \theta_{n + 1} = \argmax_{\theta} [\mathcal{L}(\theta_n) + \Delta(\theta \mid \theta_n)]$$
+
 Now, expand the terms inside the argmax and drop the non - $\theta$ terms.
 
 $$
