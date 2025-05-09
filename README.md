@@ -181,7 +181,39 @@ $$
 
 Now, using all these results we can derive the parameter updation equations that we use in the EM algorithm. This will show that the algorithm is optimal for finding an optimum for the log likelihood function.
 
-%% ####################################################################################################################################################################### %%
+First, as we calculated $\frac{\partial\mathcal{L}(\theta)}{\partial\mu_k}$, we can get the value of $\mu_k$. 
+
+Multiplying $\Sigma_k^{-1}$ (which we assume to be non - singular) on both sides of the equation we get :
+
+$$
+0 = \sum_{n = 1}^N \gamma(z_{nk}) \cdot (X_n - \mu_k)
+$$
+
+$$
+\implies 0 = \sum_{n = 1}^N \gamma(z_{nk}) \cdot X_n - \sum_{n = 1}^N \gamma(z_{nk}) \cdot \mu_k
+$$
+
+On rearranging and reordering :
+
+$$
+\mu_k = \frac{1}{N_k} \cdot \sum_{n = 1}^N \gamma(z_{nk}) \cdot X_n
+$$
+
+Using a similar derivation process for $\frac{\partial \mathcal{L}(\theta)}{\partial \Sigma_k}$ we can get the result :
+
+$$
+\Sigma_k = \frac{1}{N_k} \cdot \sum_{n = 1}^N \gamma(z_{nk}) \cdot (X_n - \mu_k) \cdot (X_n - \mu_k)^T
+$$
+
+Again, for $\pi_k$, we can calculate  $\frac{\partial \mathcal{L}(\theta)}{\partial \pi_k}$ and get the result :
+
+$$
+\pi_k = \frac{N_k}{N}
+$$
+
+where, $N_k = \sum_{n = 1}^N \gamma(z_{nk})$
+
+----
 
 ## **Proof of Correctness**
 We wish to find a $\theta$ (Parameter Vector) such that $P(X|\theta)$ is maximized, i.e, Maximum Likelihood. Alternatively to simplify the calculation, we can maximize 
