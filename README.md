@@ -165,10 +165,16 @@ $$
 }
 $$
 
-**NOTE:** This is the gradient used in the **M-step** of the EM algorithm for updating $ \mu_k $.
+And, for maximization, we equate the same to zero :
+
+$$
+0 = \sum_{n=1}^N \gamma_{nk} \Sigma_k^{-1} (X_n - \mu_k)}
+$$
+
+**NOTE:** This is the gradient used in the **M-step** of the EM algorithm for updating $\mu_k$.
 
 
-
+%% ####################################################################################################################################################################### %%
 
 ## **Proof of Correctness**
 We wish to find a $\theta$ (Parameter Vector) such that $P(X|\theta)$ is maximized, i.e, Maximum Likelihood. Alternatively to simplify the calculation, we can maximize 
