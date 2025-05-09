@@ -171,7 +171,7 @@ $$
 0 = \sum_{n=1}^N \gamma_{nk} \Sigma_k^{-1} (X_n - \mu_k)
 $$
 
-}
+
 
 
 **NOTE:** This is the gradient used in the **M-step** of the EM algorithm for updating $\mu_k$.
