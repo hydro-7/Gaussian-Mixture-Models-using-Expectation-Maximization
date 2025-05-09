@@ -170,6 +170,7 @@ And, for maximization, we equate the same to zero :
 $$
 0 = \sum_{n=1}^N \gamma_{nk} \Sigma_k^{-1} (X_n - \mu_k)
 $$
+
 }
 
 
