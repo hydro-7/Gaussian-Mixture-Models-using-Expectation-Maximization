@@ -4,13 +4,14 @@
 This is an implementation of the Expectation Maximization algorithm which helps fitting a Gaussian Model to a set of data points. The algorithm is designed to estimate parameters of multiple Gaussian distributions that best fit the data. The algorithm is responsible for finding the best estimates for the parameters. At the same time, once the fitting is completed, the KL Divergence algorithm is a method that helps measure the error between the predicted fit and the actual curve. 
 
 ## **Why Expectation Maximization**
-The formula for the log likelihood of the Gaussian Mixture Model can be derived as follows :
+Let us start of with some basic calculation which will come in handy later :
 
-Gaussian Mixture Distribution : 
+**Gaussian Mixture Distribution :**
 
 $$ p(x) = \sum_k \pi_k \cdot \mathcal{N}(X \mid \mu_k, \Sigma_k)$$
 
-**Proof:**\
+----
+Proof:\
 Assume $z$ is a latent random variable such that  
 
 $$p(z_k = 1) = \pi_k$$
@@ -35,19 +36,21 @@ $$p(X) = \sum_z p(z) \cdot p(x \mid z)$$
 
 $$\implies p(X) = \sum_{k = 1}^K \pi_k \cdot \mathcal{N} (X \mid \mu_k, \Sigma_k)$$
 
-Moving to the need for need for EM Algorithm, Let us look at the calculation of the Log Likelihood function :
+----
+
+**Log Likelihood function :**
 
 $$ \mathcal{L}(\theta) = \prod p(X_n)$$
 $$\log \mathcal{L}(\theta) = \sum \log p(X_n)$$
 So, 
 $$ \log \mathcal{L}(\theta) = \sum_{n = 1}^N \log \sum_{k = 1}^K \pi_k \cdot \mathcal{N} (X_n \mid \mu_k, \Sigma_k)$$
 
-Here, the problem that comes up due to the presence of the summation over $k$ that is present within the logarithm. This prevents the log function acting directly over the Gaussian. So, if we set the derivatives as $0$ we will no longer obtain a closed form solution, which is undesirable.
+Now, for optimization, this function needs to be maximized using the parameters.\
+But, the problem that comes up due to the presence of the summation over $k$ that is present within the logarithm. This prevents the log function acting directly over the Gaussian. So, if we set the derivatives as $0$ we will no longer obtain a closed form solution, which is undesirable.
 
-Let us look at the conditions that must be satisfied at the max of the likelihood function, i.e, computing $\frac{\partial\mathcal{L}(\theta)}{\partial\mu_k}$ :
+----
 
-
-Before anything else, the probability density function of a multivariate normal function [ $\mathcal{N}(X \mid \theta) $ ] is:
+Before anything else, the probability density function of a **Multivariate Normal Function** [ $\mathcal{N}(X \mid \theta) $ ] is:
 
 $$
 \mathcal{N}(X_n \mid \mu_k, \Sigma_k) = \frac{1}{(2\pi)^{d/2} |\Sigma_k|^{1/2}} \exp\left( -\frac{1}{2} (X_n - \mu_k)^T \Sigma_k^{-1} (X_n - \mu_k) \right)
@@ -117,9 +120,9 @@ $$
 }
 $$
 
+----
 
-Using this result, we can now solve for our required result :
-
+Keeping this in mind, let us look at the conditions that must be satisfied at the max of the likelihood function, so, computing $\frac{\partial\mathcal{L}(\theta)}{\partial\mu_k}$ :
 
 $$
 \log L(\theta) = \sum_{n=1}^N \log \left( \sum_{k=1}^K \pi_k \cdot \mathcal{N}(X_n \mid \mu_k, \Sigma_k) \right)
@@ -172,10 +175,9 @@ $$
 $$
 
 
-
-
 **NOTE:** This is the gradient used in the **M-step** of the EM algorithm for updating $\mu_k$.
 
+Now, using all these results we can derive the parameter updation equations that we use in the EM algorithm. This will show that the algorithm is optimal for finding an optimum for the log likelihood function.
 
 %% ####################################################################################################################################################################### %%
 
