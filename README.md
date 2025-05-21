@@ -316,3 +316,17 @@ $$
 $$
 
 Hence, this shows that the Expectation step leads to the maximization of $\mathcal{L}(\theta)$ on the $n + 1^{th}$ iteration. That is, on eac hiteration the likelihood is non - decreasing.
+
+
+## **KL Divergence vs Earth Mover's Distance**
+
+Both EMD and KLD (aka. Wasserstein) are methods to calculate the distance between two probability distribution functions. But, both of them have their use cases :
+
+![image](https://github.com/user-attachments/assets/2ca93849-204c-4ec4-acbb-25ec002bfd8e)
+
+Consider the following distributions, the KL Divergence of both of them is identical. But, obviously there is a visible difference, in such cases where the visibly horizontal distances are to be taken into account as well, we can make use of the Earth Mover's Distance instead of KL Divergence.
+
+## **References**
+- [EMD vs KLD](https://stats.stackexchange.com/questions/295617/what-is-the-advantages-of-wasserstein-metric-compared-to-kullback-leibler-diverg)
+- 
+
